@@ -20,7 +20,7 @@ function initTabNav() {
         });
     }          
 };
- initTabNav();
+initTabNav();
 
 function initAccordion() {
     const accordionList = document.querySelectorAll('.js-accordion dt');
@@ -60,3 +60,28 @@ function initScrollSuave(){
     }
 };
 initScrollSuave();
+
+function initAnimacaoScroll() {
+    const sections = document.querySelectorAll('.js-scroll');
+
+    if(sections.length) {
+        const windowTrigger = window.innerHeight * 0.65;
+        function animaScroll() {
+            sections.forEach((section) => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const isSectionVisible = (sectionTop - windowTrigger) < 0;
+                if(isSectionVisible){
+                    section.classList.add('ativo');
+                } else {
+                    section.classList.remove('ativo');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', animaScroll);
+        
+        animaScroll();
+    }
+}
+initAnimacaoScroll();
+
